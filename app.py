@@ -48,6 +48,16 @@ class TenantVehicles(db.Model):
     tenant_id = db.Column(db.Integer)
     plate_number = db.Column(db.String(128))
 
+class TenantGuests(db.Model):
+    __tablename__ = "tenant_guests"
+
+    id = db.Column(db.Integer, primary_key=True)
+    tenant_id = db.Column(db.Integer)
+    tenant_name =  db.Column(db.String(128))
+    plate_number = db.Column(db.String(128))
+    time_from =  db.Column(db.DateTime())
+    time_to =  db.Column(db.DateTime())
+
 
 def connect():
     """ Connect to the PostgreSQL database server """
