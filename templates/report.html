@@ -1,0 +1,131 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<div class="row">
+    <div class="col-xl-12">
+        <!-- START card-->
+        <div class="card card-default" id="cardDemo14">
+            <div class="card-body">
+                <div role="tabpanel">
+                    <!-- Nav tabs-->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" href="/report" aria-controls="report" role="tab">Report</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" href="/analytics" aria-controls="profile" role="tab">Analytics</a>
+                        </li>
+                    </ul>
+                    <!-- Tab panes-->
+                    <div class="tab-content">
+                        <form id="frm_filter">
+
+                            <div class="form-row align-items-center">
+                                <div class="col-auto">
+                                    <label class="sr-only" for="start_date">Start Date</label>
+                                    <div class="input-group">
+                                        <input class="form-control datepicker" type="text" id="start_date"
+                                            placeholder="Start Date" aria-label="start_date"
+                                            aria-describedby="start_date">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="start_date">
+                                                <i class="fas fa-calendar"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-auto">
+                                    <label class="sr-only" for="end_date">End Date</label>
+                                    <div class="input-group">
+                                        <input class="form-control datepicker" type="text" id="end_date"
+                                            placeholder="End Date" aria-label="start_date" aria-describedby="end_date">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="start_date">
+                                                <i class="fas fa-calendar"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-auto">
+                                    <button id="btn_filter" class="btn btn-warning mb-2" type="button"> <i
+                                            class="fas fa-search"></i>
+                                        Filter</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END card-->
+    </div>
+
+    <div class="col-xl-6">
+        <div class="card card-default">
+            <div class="card-header">
+                <h4>Recent Temperature/Humidity of the Brood</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Date/Time</th>
+                                <th>Temperature</th>
+                                <th>Humidity</th>
+                                <th>&nbsp</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in dht_data %}
+                            <tr>
+                                <td>{{row[1]}}/{{row[2]}}</td>
+                                <td>{{row[3]}}</td>
+                                <td>{{row[4]}}</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card card-default">
+            <div class="card-header">Current Feed/Water Level in the Brooder</div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Feed (%)</th>
+                                <th>Water (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for data in feed_data %}
+                            <tr>
+                                <td>{{data[1]}}</td>
+                                <td>{{data[2]}}</td>
+                                <td>{{data[3]}}</td>
+                                <td>{{data[4]}}</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- END row-->
+
+{% endblock %}

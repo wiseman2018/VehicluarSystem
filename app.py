@@ -75,5 +75,22 @@ def connect():
             print('Database connection closed.')
 
 
+# Application Routes
+@app.route('/')
+def login():
+    return render_template("login.html")
+
+@app.route('/login')
+def login1():
+    return render_template("login.html")
+    
+@app.route('/setup')
+def setup():
+    return render_template("setup.html")
+
+@app.route('/home')
+def home():
+    return render_template("home.html")
+
 if __name__ == '__main__':
     app.run()

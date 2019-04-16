@@ -1,0 +1,72 @@
+<aside class="aside-container">
+    <!-- START Sidebar (left)-->
+    <div class="aside-inner">
+        <nav class="sidebar" data-sidebar-anyclick-close="">
+            <!-- START sidebar nav-->
+            <ul class="sidebar-nav">
+                <!-- START user info-->
+                <li class="has-user-block">
+                    <div class="collapse" id="user-block">
+                        <div class="item user-block">
+                            <!-- User picture-->
+                            <div class="user-block-picture">
+                                <div class="user-block-status">
+                                    <img class="img-thumbnail rounded-circle"
+                                        src="{{url_for('static', filename='img/user/02.jpg')}}" alt="Avatar" width="60"
+                                        height="60">
+                                    <div class="circle bg-success circle-lg"></div>
+                                </div>
+                            </div>
+                            <!-- Name and Job-->
+                            <div class="user-block-info">
+                                <span class="user-block-name">Hello, Mike</span>
+                                <span class="user-block-role">Farmer</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!-- END user info-->
+                <!-- Iterates over all sidebar items-->
+                <li class="nav-heading ">
+                    <span data-localize="sidebar.heading.HEADER">Main Navigation</span>
+                </li>
+                <li class=" ">
+                    <a href="/home" title="Dashboard">
+                        <em class="icon-home"></em>
+                        <span>Home</span>
+                    </a>
+                </li>
+
+                <li class=" ">
+                        <a href="/about" title="About">
+                            <em class="icon-question"></em>
+                            <span>About</span>
+                        </a>
+                    </li>
+               
+                <li class=" ">
+                    <a href="#setup" title="Reports" data-toggle="collapse">
+                        <em class="icon-settings"></em>
+                        <span>Setup</span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-subnav collapse" id="setup">
+                        <li class="sidebar-subnav-header">Setup</li>
+                        <li class=" ">
+                            <a href="/setup/vehicles" title="Vehicles">
+                                <span>Vehicles</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="/setup/guests" title="Guests">
+                                <span>Guests</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+            </ul>
+            <!-- END sidebar nav-->
+        </nav>
+    </div>
+    <!-- END Sidebar (left)-->
+</aside>
