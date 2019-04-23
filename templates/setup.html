@@ -18,6 +18,11 @@
         href="{{url_for('static', filename='vendor/@fortawesome/fontawesome-free/css/fontawesome.css')}}">
     <!-- SIMPLE LINE ICONS-->
     <link rel="stylesheet" href="{{url_for('static', filename='vendor/simple-line-icons/css/simple-line-icons.css')}}">
+
+    <!-- DATETIMEPICKER-->
+    <link rel="stylesheet"
+        href="{{url_for('static', filename='vendor1/bootstrap-datepicker/dist/css/bootstrap-datepicker.css')}}">
+
     <!-- =============== BOOTSTRAP STYLES ===============-->
     <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.css')}}" id="bscss">
     <!-- =============== APP STYLES ===============-->
@@ -37,12 +42,12 @@
                 </div>
                 <div class="card-body">
                     <p class="text-center py-2">SETUP YOUR FARM.</p>
-                    <form class="mb-3" id="registerForm" method="POST" action="/doSetUp" novalidate>
+                    <form class="mb-3" id="registerForm" method="POST" action="/doSetUp">
                         <div class="form-group">
                             <label class="text-muted" for="first_name">First Name</label>
                             <div class="input-group with-focus">
-                                <input class="form-control border-right-0" id="first_name" name="first_name" type="text"
-                                    placeholder="First name" autocomplete="off" required>
+                                <input required class="form-control border-right-0" id="first_name" name="first_name" type="text"
+                                    placeholder="First name" autocomplete="off">
                                 <div class="input-group-append">
                                     <span class="input-group-text text-muted bg-transparent border-left-0">
                                         <em class="fa fa-user"></em>
@@ -90,11 +95,23 @@
                         <div class="form-group">
                             <label class="text-muted" for="email">Apartment Number</label>
                             <div class="input-group with-focus">
-                                <input class="form-control border-right-0" id="phone" name="apt_number" type="text"
+                                <input class="form-control border-right-0" id="apt_number" name="apt_number" type="text"
                                     placeholder="Apartment Number" autocomplete="off" required>
                                 <div class="input-group-append">
                                     <span class="input-group-text text-muted bg-transparent border-left-0">
                                         <em class="fa fa-mobile"></em>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-muted" for="email">Move-In Date</label>
+                            <div class="input-group with-focus">
+                                <input class="form-control border-right-0 datepicker" id="move_in_date" name="move_in_date" type="text"
+                                    placeholder="Move-In Date" required>
+                                <div class="input-group-append">
+                                    <span class="input-group-text text-muted bg-transparent border-left-0">
+                                        <em class="fa fa-calendar"></em>
                                     </span>
                                 </div>
                             </div>
@@ -104,7 +121,7 @@
                             <label class="text-muted" for="signupInputPassword1">Access Code</label>
                             <div class="input-group with-focus">
                                 <input class="form-control border-right-0" id="signupInputPassword1" name="access_code1"
-                                    type="password" placeholder="Password" autocomplete="off" required>
+                                    type="password" placeholder="Access Code" autocomplete="off" required>
                                 <div class="input-group-append">
                                     <span class="input-group-text text-muted bg-transparent border-left-0">
                                         <em class="fa fa-lock"></em>
@@ -116,7 +133,7 @@
                             <label class="text-muted" for="signupInputRePassword1">Retype Access Code</label>
                             <div class="input-group with-focus">
                                 <input class="form-control border-right-0" id="signupInputRePassword1" name="access_code2"
-                                    type="password" placeholder="Retype Password" autocomplete="off" required
+                                    type="password" placeholder="Retype Access Code" autocomplete="off" required
                                     data-parsley-equalto="#signupInputPassword1">
                                 <div class="input-group-append">
                                     <span class="input-group-text text-muted bg-transparent border-left-0">
@@ -162,10 +179,14 @@
     <!-- BOOTSTRAP-->
     <script src="{{url_for('static', filename='vendor/popper.js/dist/umd/popper.js')}}"></script>
     <script src="{{url_for('static', filename='vendor/bootstrap/dist/js/bootstrap.js')}}"></script>
+    <!-- DATETIMEPICKER-->
+    <script
+        src="{{url_for('static', filename='vendor1/bootstrap-datepicker/dist/js/bootstrap-datepicker.js')}}"></script>
     <!-- PARSLEY-->
     <script src="{{url_for('static', filename='vendor/parsleyjs/dist/parsley.js')}}"></script>
     <!-- =============== APP SCRIPTS ===============-->
     <script src="{{url_for('static', filename='js/app.js')}}"></script>
+    <script src="{{url_for('static', filename='js/custom.js')}}"></script>
 </body>
 
 </html>

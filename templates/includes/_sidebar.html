@@ -19,7 +19,7 @@
                             </div>
                             <!-- Name and Job-->
                             <div class="user-block-info">
-                                <span class="user-block-name">Hello, Mike</span>
+                                <span class="user-block-name">Hello, {{session['first_name']}} {{session['last_name']}}</span>
                                 <span class="user-block-role">Farmer</span>
                             </div>
                         </div>
@@ -38,7 +38,7 @@
                 </li>
 
                 <li class=" ">
-                        <a href="/about" title="About">
+                        <a href="#about" data-toggle="modal" title="About">
                             <em class="icon-question"></em>
                             <span>About</span>
                         </a>
