@@ -147,6 +147,26 @@ def logout():
 
     return redirect(url_for('login'))
 
+@app.route('/setup/vehicles')
+def tenantVehicles():
+    # get all the vehicles that belongs to the login tenant
+    # Initialise the Vas class and pass submitted form inputs across
+    vas = Vas(session,  connect())
+    # get tenant vehicles
+    vehicles = vas.getTenantVehicle()
+
+    return render_template("setup/tenant_vehicles.html", **locals())
+
+@app.route('/setup/vehicle', methods=['POST'])
+def setupTenantVehicle():
+    # Initialise the Vas class and pass submitted form inputs across
+    vas = Vas(request.form,  connect())
+    # get tenant vehicles
+    vas.addTenantVehicle()
+
+    return redirect(url_for('tenantVehicles'))
+
+
 if __name__ == '__main__':
     app.config['SESSION_TYPE'] = 'filesystem'
     app.secret_key = os.urandom(24)

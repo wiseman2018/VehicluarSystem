@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+{% block body %}
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card card-default">
+                <div class="card-header">
+                    <h3>
+                        My Vehicles
+                        <a href="#addVehicle" data-toggle="modal" class="btn btn-warning float-right">Add New Vehicle</a>
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>SN</th>
+                                    <th>Make</th>
+                                    <th>Model</th>
+                                    <th>Registration Number</th>
+                                    <th>...</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for row in vehicles %}
+                                <tr>
+                                    <td>{{loop.index}}</td>
+                                    <td>{{row[3]}}</td>
+                                    <td>{{row[4]}}</td>
+                                    <td>{{row[2]}}</td>
+                                    <td>
+                                        <a href="#">edit</a> |
+                                        <a href="#">delete</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% include 'setup/_add_vehicle.html' %}

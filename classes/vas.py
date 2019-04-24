@@ -29,3 +29,26 @@ class Vas:
                          first_name, last_name, email, phone, passcode, apt_number, move_in_date])
         self.conn.commit()
         return self.conn.commit()
+
+    
+    def getTenantVehicle(self):
+        tenant_id = self.param['id']
+
+        self.cur.execute(
+            'SELECT * FROM tenant_vehicles WHERE tenant_id = %s', [tenant_id])
+        return self.cur.fetchall()
+
+
+    def addTenantVehicle(self):
+        vehicle_make = self.param['vehicle_make']
+        vehicle_model = self.param['vehicle_model']
+        plate_number = self.param['plate_number']
+        tenant_id = self.param['tenant_id']
+
+        print(tenant_id, plate_number)
+
+        # insert record
+        self.cur.execute('INSERT INTO tenant_vehicles (tenant_id, plate_number, vehicle_make, vehicle_model ) values (%s, %s, %s, %s )', [
+                         tenant_id, plate_number, vehicle_make, vehicle_model])
+        return self.conn.commit()
+
