@@ -56,10 +56,10 @@ class TenantGuests(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     tenant_id = db.Column(db.Integer)
-    tenant_name =  db.Column(db.String(128))
+    guest_name =  db.Column(db.String(128))
     plate_number = db.Column(db.String(128))
-    time_from =  db.Column(db.DateTime())
-    time_to =  db.Column(db.DateTime())
+    arrival_date =  db.Column(db.Date())
+    arrival_time =  db.Column(db.Time())
     vehicle_make = db.Column(db.String(128))
     vehicle_model = db.Column(db.String(128))
 
@@ -165,6 +165,25 @@ def setupTenantVehicle():
     vas.addTenantVehicle()
 
     return redirect(url_for('tenantVehicles'))
+
+@app.route('/setup/guests')
+def tenantGuests():
+    # get all the vehicles that belongs to the login tenant
+    # Initialise the Vas class and pass submitted form inputs across
+    vas = Vas(session,  connect())
+    # get tenant guest
+    guests = vas.getTenantGuest()
+
+    return render_template("setup/tenant_guests.html", **locals())
+
+@app.route('/setup/guest', methods=['POST'])
+def setupTenantGuest():
+    # Initialise the Vas class and pass submitted form inputs across
+    vas = Vas(request.form,  connect())
+    # add guest
+    vas.addTenantGuest()
+
+    return redirect(url_for('tenantGuests'))
 
 
 if __name__ == '__main__':

@@ -51,4 +51,26 @@ class Vas:
         self.cur.execute('INSERT INTO tenant_vehicles (tenant_id, plate_number, vehicle_make, vehicle_model ) values (%s, %s, %s, %s )', [
                          tenant_id, plate_number, vehicle_make, vehicle_model])
         return self.conn.commit()
+    
+    def getTenantGuest(self):
+        tenant_id = self.param['id']
+
+        self.cur.execute(
+            'SELECT * FROM tenant_guests WHERE tenant_id = %s', [tenant_id])
+        return self.cur.fetchall()
+
+
+    def addTenantGuest(self):
+        guest_name = self.param['guest_name']
+        arrival_date = self.param['arrival_date']
+        plate_number = self.param['plate_number']
+        arrival_time = self.param['arrival_time']
+        vehicle_make = self.param['vehicle_make']
+        vehicle_model = self.param['vehicle_model']
+        tenant_id = self.param['tenant_id']
+
+        # insert record
+        self.cur.execute('INSERT INTO tenant_guests (tenant_id, guest_name, plate_number, arrival_date, arrival_time, vehicle_make, vehicle_model ) values (%s, %s, %s, %s, %s, %s, %s )', [
+                         tenant_id, guest_name, plate_number, arrival_date, arrival_time, vehicle_make, vehicle_model])
+        return self.conn.commit()
 
