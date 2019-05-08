@@ -29,8 +29,7 @@
                                     <td>{{ vehicle.vehicle_model }}</td>
                                     <td>{{ vehicle.plate_number }}</td>
                                     <td>
-                                        <a href="#">edit</a> |
-                                        <a href="#">delete</a>
+                                        <a href="/setup/delete_vehicle?id={{vehicle.id}}" onclick="return false;" class="btn btn-danger btn-oval confirm_delete">delete</a>
                                     </td>
                                 </tr>
                                 {% endfor %}

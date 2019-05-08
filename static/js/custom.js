@@ -12,14 +12,7 @@ $('.datepicker').datepicker({
     }
 });
 
-function getReport(startDate_, endDate_) {
-    console.log(startDate_, endDate_);
-    let url = "/api/get_temp_humid?start_date=" + startDate_ + "&end_date=" + endDate_;
 
-    $.get(url, function (err, data) {
-        console.log(err, data)
-    });
-}
 
 $("#btn_filter").click(function () {
     var start_date = $("#start_date").val();
@@ -29,58 +22,40 @@ $("#btn_filter").click(function () {
 
 });
 
-function plot(start_date_, end_date_) {
-    let url = "/api/get_temp_humid?start_date=" + start_date_ + "&end_date=" + end_date_;
-    console.log("Api Url:", url);
+$('a.confirm_delete').click(function (e) {
+    e.preventDefault();
+    var url = this.href;
+    var msg_ = $(this).data('msg');
+    var title_ = $(this).data('title');
 
-    $.get(url, function (data) {
-        Highcharts.chart('container', {
-            chart: {
-                type: 'line'
+    swal({
+        title: typeof title_ !== 'undefined' ? title_ : 'Are you sure?',
+        text: typeof msg_ !== 'undefined' ? msg_ : "Are you sure you want to delete the selected item?",
+        icon: 'warning',
+        buttons: {
+            cancel: {
+                text: 'No, cancel',
+                value: null,
+                visible: true,
+                className: "",
+                closeModal: false
             },
-            title: {
-                text: 'Temperature/Humidity Reading'
-            },
-            subtitle: {
-                text: 'Source: Sensor Data'
-            },
-            xAxis: {
-                categories: data.categories,
-                tickmarkPlacement: 'on',
-                title: {
-                    enabled: false
-                }
-            },
-            yAxis: {
-                title: {
-                    text: 'Percent'
-                }
-            },
-            tooltip: {
-                pointFormat: '<span style="color:{series.color}">{series.name}</span>:({point.y:,0:0.1f})<br/>',
-                split: true
-            },
-            plotOptions: {
-                area: {
-                    stacking: 'percent',
-                    lineColor: '#ffffff',
-                    lineWidth: 1,
-                    marker: {
-                        lineWidth: 1,
-                        lineColor: '#ffffff'
-                    }
-                }
-            },
-            series: [{
-                name: 'Temperature',
-                data: data.temperature
-            }, {
-                name: 'Humidity',
-                data: data.humidity
-            }]
-        });
+            confirm: {
+                text: 'Yes, go ahead!',
+                value: true,
+                visible: true,
+                className: "bg-danger",
+                closeModal: false
+            }
+        }
+    }).then(function (isConfirm) {
+        if (isConfirm) {
+            self.location = url;
+        } else {
+            swal('Cancelled', 'Operation has been cancelled.', 'error');
+        }
     });
 
-}
+});
 
 

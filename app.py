@@ -206,6 +206,33 @@ def tenantGuests():
 
     return render_template("setup/tenant_guests.html", **locals())
 
+@app.route('/setup/delete_guest',  methods=["POST", "GET"])
+def deleteGuest():
+    vas = Vas(request.args,  connect())
+    # Complete delete
+    vas.deleteGuest()
+    flash("Guest deleted successfully")
+
+    return redirect(url_for('tenantGuests'))
+
+@app.route('/setup/delete_vehicle',  methods=["POST", "GET"])
+def deleteVehicle():
+    vas = Vas(request.args,  connect())
+    # Complete delete
+    vas.deleteVehicle()
+    flash("Vehicle deleted successfully")
+
+    return redirect(url_for('tenantVehicles'))
+
+@app.route('/setup/delete_exclu',  methods=["POST", "GET"])
+def deleteExclu():
+    vas = Vas(request.args,  connect())
+    # Complete delete
+    vas.deleteExclu()
+    flash("Reg prefix deleted successfully")
+
+    return redirect(url_for('exclusiveList'))
+
 @app.route('/setup/guest', methods=['POST'])
 def setupTenantGuest():
     # Initialise the Vas class and pass submitted form inputs across

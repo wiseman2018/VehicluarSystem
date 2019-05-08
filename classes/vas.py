@@ -60,3 +60,30 @@ class Vas:
                          tenant_id, guest_name, plate_number, arrival_date, arrival_time, vehicle_make, vehicle_model])
         return self.conn.commit()
 
+    def deleteGuest(self):
+        id = self.param['id']
+
+        # Delete selected ID from tenant guest table
+        self.cur.execute("DELETE FROM tenant_guests WHERE id = %s", [
+                         id])
+
+        return self.conn.commit()
+
+    def deleteVehicle(self):
+        id = self.param['id']
+
+        # Delete selected ID from tenant vehicles table
+        self.cur.execute("DELETE FROM tenant_vehicles WHERE id = %s", [
+                         id])
+
+        return self.conn.commit()
+
+    def deleteExclu(self):
+        id = self.param['id']
+
+        # Delete selected ID from tenant vehicles table
+        self.cur.execute("DELETE FROM exclusive_list WHERE id = %s", [
+                         id])
+
+        return self.conn.commit()
+
