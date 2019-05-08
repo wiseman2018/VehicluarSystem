@@ -31,14 +31,6 @@ class Vas:
         return self.conn.commit()
 
     
-    def getTenantVehicle(self):
-        tenant_id = self.param['id']
-
-        self.cur.execute(
-            'SELECT * FROM tenant_vehicles WHERE tenant_id = %s', [tenant_id])
-        return self.cur.fetchall()
-
-
     def addTenantVehicle(self):
         vehicle_make = self.param['vehicle_make']
         vehicle_model = self.param['vehicle_model']
@@ -52,12 +44,6 @@ class Vas:
                          tenant_id, plate_number, vehicle_make, vehicle_model])
         return self.conn.commit()
     
-    def getTenantGuest(self):
-        tenant_id = self.param['id']
-
-        self.cur.execute(
-            'SELECT * FROM tenant_guests WHERE tenant_id = %s', [tenant_id])
-        return self.cur.fetchall()
 
 
     def addTenantGuest(self):

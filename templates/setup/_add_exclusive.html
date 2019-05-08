@@ -1,0 +1,28 @@
+<div id="addExclusion" class="modal fade" tabindex="1" aria-label="aboutModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Exclusive Reg</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/setup/exclusive" method="post">
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="plate_number" class="col-xl-3 col-form-label">
+                            Registration Number Prefix
+                        </label>
+                        <div class="col-xl-9">
+                            <input required type="text" class="form-control" name="reg_prefix" id="reg_prefix">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" >Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

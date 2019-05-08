@@ -1,4 +1,93 @@
 {% extends 'layout.html' %}
 {% block body %}
 
+<div class="row">
+    <div class="col-md-12">
+        <div class="alert alert-warning">
+            Welcome to Harmony Estate
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-3 col-lg-6 col-md-12">
+        <!-- START date widget-->
+        <div class="card flex-row align-items-center align-items-stretch border-0">
+            <div class="col-4 d-flex align-items-center bg-green justify-content-center rounded-left">
+                <div class="text-center">
+                    <!-- See formats: https://docs.angularjs.org/api/ng/filter/date-->
+                    <div class="text-sm" data-now="" data-format="MMMM YYYY"></div>
+                    <br>
+                    <div class="h2 mt-0" data-now="" data-format="D"></div>
+                </div>
+            </div>
+            <div class="col-8 py-3 rounded-right">
+                <div class="text-uppercase" data-now="" data-format="dddd"></div>
+                <br>
+                <div class="h3 mt-0" data-now="" data-format="h:mm"></div>
+                <div class="text-muted text-sm" data-now="" data-format="a"></div>
+            </div>
+        </div>
+        <!-- END date widget-->
+        </div>
+    <div class="col-xl-3 col-md-6">
+        <!-- START card-->
+        <div class="card flex-row align-items-center align-items-stretch border-0">
+            <div class="col-4 d-flex align-items-center bg-purple-dark justify-content-center rounded-left">
+                <!-- <em class="icon-globe fa-3x"></em> -->
+                <em class="fas fa-car fa-3x"></em>
+            </div>
+            <div class="col-8 py-3 bg-purple rounded-right">
+                <div class="h3 mt-0"> {{vehicles}}
+                    <small></small>
+                </div>
+                <div class="text-uppercase">Vehicle</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+        <!-- START card-->
+        <div class="card flex-row align-items-center align-items-stretch border-0">
+            <div class="col-4 d-flex align-items-center bg-purple-dark justify-content-center rounded-left">
+                <!-- <em class="icon-globe fa-3x"></em> -->
+                <em class="fas fa-users fa-3x"></em>
+            </div>
+            <div class="col-8 py-3 bg-purple rounded-right">
+                <div class="h3 mt-0">{{guests}}
+                    <small></small>
+                </div>
+                <div class="text-uppercase">Guests</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- START card-->
+    <div class="card border-0">
+        <div class="card-header bg-primary">
+            <h4 class="mt-0">
+                Quick Links
+            </h4>
+        </div>
+        <div class="card-body">
+
+                <a class="btn btn-warning btn-lg btn-block mt-3" href="/setup/vehicles">Add New Vehicle</a>
+
+            <div class="mt-3">
+                <a class="btn btn-info btn-lg btn-block" href="/setup/guests">Invite Guest</a>
+            </div>
+            
+            <p>
+                <a class="btn btn-danger btn-lg mt-3 btn-block" href="/setup/exclusive">Exclusive List</a>
+            </p>
+            
+        </div>
+    </div>
+    <!-- END card-->
+    </div>
+</div>
+
 {% endblock %}

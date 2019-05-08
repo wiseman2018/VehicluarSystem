@@ -24,14 +24,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for row in guests %}
+                                {% for guest in guests %}
                                 <tr>
                                     <td>{{loop.index}}</td>
-                                    <td>{{row[5]}}</td>
-                                    <td>{{row[3]}}</td>
-                                    <td>{{row[4]}}</td>
-                                    <td>{{row[2]}}</td>
-                                    <td>{{row[6]}} at {{row[7]}}</td>
+                                    <td>{{ guest.guest_name }}</td>
+                                    <td>{{ guest.vehicle_make }}</td>
+                                    <td>{{ guest.vehicle_model }}</td>
+                                    <td>{{ guest.plate_number }}</td>
+                                    <td>{{ guest.arrival_date}} at {{ guest.arrival_time}}</td>
                                     <td>
                                         <a href="#">edit</a> |
                                         <a href="#">delete</a>

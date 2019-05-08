@@ -81,7 +81,11 @@
                         <small>{{page_desc}}</small>
                     </div>
                 </div>
-
+                {% with messages = get_flashed_messages()  %}
+                {% if messages %}
+                    <div class="alert alert-warning">{{messages[0]}}</div>
+                {% endif %}
+                {% endwith %} 
                 {% block body %}
 
                 {% endblock %}
