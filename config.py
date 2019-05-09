@@ -6,7 +6,8 @@ class Config(object):
     DEBUG = False
     TESTING = False
     CSRF_ENABLED = True
-    SECRET_KEY = ''
+    SECRET_KEY = os.urandom(24)
+    SESSION_TYPE = 'filesystem'
 
 
 class ProductionConfig(Config):

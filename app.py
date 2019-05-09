@@ -244,7 +244,5 @@ def setupTenantGuest():
 
 
 if __name__ == '__main__':
-    app.config['SESSION_TYPE'] = 'filesystem'
-    app.secret_key = os.urandom(24)
 
     app.run()
