@@ -108,7 +108,7 @@ def setup():
 
 @app.route('/home')
 def home():
-    tenant_id = session['id']
+    tenant_id = 1
     vehicles = TenantVehicles.query.count()
     guests = TenantGuests.query.filter_by(tenant_id=tenant_id).count()
     return render_template("home.html", **locals())
