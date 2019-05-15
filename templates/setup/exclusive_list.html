@@ -16,6 +16,7 @@
                                 <tr>
                                     <th>SN</th>
                                     <th>Registration Prefix</th>
+                                    <th>Description</th>
                                     <th>...</th>
                                 </tr>
                             </thead>
@@ -24,6 +25,7 @@
                                 <tr>
                                     <td>{{loop.index}}</td>
                                     <td>{{row.reg_prefix}}</td>
+                                    <td>{{row.description}}</td>
                                     <td>
                                         <a href="/setup/delete_exclu?id={{row.id}}" onclick="return false;" class="btn btn-danger btn-oval confirm_delete">delete</a>
                                     </td>

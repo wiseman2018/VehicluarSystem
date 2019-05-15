@@ -18,6 +18,7 @@
                                     <th>Make</th>
                                     <th>Model</th>
                                     <th>Registration Number</th>
+                                    <th>Front View</th>
                                     <th>...</th>
                                 </tr>
                             </thead>
@@ -28,6 +29,9 @@
                                     <td>{{ vehicle.vehicle_make }}</td>
                                     <td>{{ vehicle.vehicle_model }}</td>
                                     <td>{{ vehicle.plate_number }}</td>
+                                    <td>
+                                        <img src="{{ vehicle.vehicle_image }}" alt="" style="max-height:100px">
+                                    </td>
                                     <td>
                                         <a href="/setup/delete_vehicle?id={{vehicle.id}}" onclick="return false;" class="btn btn-danger btn-oval confirm_delete">delete</a>
                                     </td>

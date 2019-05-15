@@ -7,6 +7,8 @@ import datetime
 import psycopg2
 from classes.vas import Vas
 from flask_login import LoginManager, login_user, UserMixin
+from cloudinary.uploader import upload
+from cloudinary.utils import cloudinary_url
 
 app = Flask(__name__)
 # app = Flask(__name__, static_url_path=os.getcwd() + 'static/vendor1')
@@ -14,6 +16,7 @@ app.config.from_object(os.environ['APP_SETTINGS'])
 print(os.environ['APP_SETTINGS'])
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
@@ -70,6 +73,7 @@ class ExclusiveList(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     reg_prefix =  db.Column(db.String(128))
+    description =  db.Column(db.String(255))
 
 
 def connect():
@@ -177,9 +181,10 @@ def exclusiveList():
 @app.route('/setup/exclusive', methods=['POST'])
 def setupexclusiveList():
     reg_prefix = request.form.get('reg_prefix')
+    description = request.form.get('description')
 
     # Create a new exclusive list
-    new_exclu = ExclusiveList(reg_prefix=reg_prefix)
+    new_exclu = ExclusiveList(reg_prefix=reg_prefix,description=description)
 
     # Add new record to db
     db.session.add(new_exclu)
@@ -191,10 +196,28 @@ def setupexclusiveList():
 
 @app.route('/setup/vehicle', methods=['POST'])
 def setupTenantVehicle():
-    # Initialise the Vas class and pass submitted form inputs across
-    vas = Vas(request.form,  connect())
-    # get tenant vehicles
-    vas.addTenantVehicle()
+    upload_result = None
+    if request.method == 'POST':
+        file_to_upload = request.files['vehicle_image']
+        if file_to_upload:
+            upload_result = upload(file_to_upload)
+            print(upload_result)
+
+        vehicle_make = request.form.get('vehicle_make')
+        vehicle_model = request.form.get('vehicle_model')
+        plate_number = request.form.get('plate_number')
+        tenant_id = request.form.get('tenant_id')
+        vehicle_image = upload_result['secure_url']
+
+
+        # add vehicle to tenant vehicle table
+        new_vehicle = TenantVehicles(vehicle_make=vehicle_make,vehicle_model=vehicle_model,plate_number=plate_number,tenant_id=tenant_id,vehicle_image=vehicle_image)
+
+        # Add new record to db
+        db.session.add(new_vehicle)
+        db.session.commit()
+
+        flash("Operation was successful")
 
     return redirect(url_for('tenantVehicles'))
 
