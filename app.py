@@ -51,6 +51,7 @@ class TenantVehicles(db.Model):
     plate_number = db.Column(db.String(128))
     vehicle_make = db.Column(db.String(128))
     vehicle_model = db.Column(db.String(128))
+    vehicle_image = db.Column(db.String(255))
 
 class TenantGuests(db.Model):
     __tablename__ = "tenant_guests"
