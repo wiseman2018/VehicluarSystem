@@ -240,7 +240,7 @@ def emergencyAccess_post():
     # Notify system admins of emergency access
     msg = Message('Emergency Alert', sender='alert@vas.se',
                               recipients=['akinola.paul2009@gmail.com'])
-    msg.body = "A tenant just requested an emergency access. You may need to check if there is no system failure at moment."
+    msg.body = "A tenant(" + session['first_name'] + " " + session['last_name'] +") just requested an emergency access. You may need to check if there is no system failure at moment."
     mail.send(msg)
 
     flash("Your request for access has been received. You will be granted access in 60 seconds.")
