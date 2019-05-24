@@ -187,6 +187,7 @@ def tenantVehicles():
 
 @app.route('/setup/exclusive')
 def exclusiveList():
+    page_title = "Exclusive List"
     # get all the vehicles that belongs to the login tenant
     # Initialise the Vas class and pass submitted form inputs across
     exclusives = ExclusiveList.query.all()
