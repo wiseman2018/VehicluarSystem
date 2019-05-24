@@ -10,36 +10,24 @@
                     </h3>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>SN</th>
-                                    <th>Name</th>
-                                    <th>Make</th>
-                                    <th>Model</th>
-                                    <th>Registration Number</th>
-                                    <th>Time</th>
-                                    <th>...</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for guest in guests %}
-                                <tr>
-                                    <td>{{loop.index}}</td>
-                                    <td>{{ guest.guest_name }}</td>
-                                    <td>{{ guest.vehicle_make }}</td>
-                                    <td>{{ guest.vehicle_model }}</td>
-                                    <td>{{ guest.plate_number }}</td>
-                                    <td>{{ guest.arrival_date}} at {{ guest.arrival_time}}</td>
-                                    <td>
-                                        <a href="/setup/delete_guest?id={{guest.id}}" onclick="return false;" class="btn btn-danger btn-oval confirm_delete">delete</a>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
+                    {% for guest in guests %}
+                    <div class="card">
+                        <div class="card-header">
+                           <h4>{{ guest.guest_name }}</h4>
+                        </div>
+                        <div class="card-body">
+                            Make: {{ guest.vehicle_make }}<br>
+                            Model: {{ guest.vehicle_model }}<br>
+                            Reg. Number: {{ guest.plate_number }}<br>
+                            Date: {{ guest.arrival_date}} <br>
+                            Time: {{ guest.arrival_time}}
+                        </div> 
+                        <div class="card-footer">
+                            <a href="/setup/delete_guest?id={{guest.id}}" onclick="return false;" class="btn btn-danger btn-oval confirm_delete">delete</a>
+                        </div>
+                        </div>
+                    {% endfor %}
+                   
                 </div>
             </div>
         </div>
