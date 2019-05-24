@@ -127,7 +127,7 @@ def setup():
 
 @app.route('/home')
 def home():
-    tenant_id = 1
+    tenant_id = session['id']
     vehicles = TenantVehicles.query.count()
     guests = TenantGuests.query.filter_by(tenant_id=tenant_id).count()
     return render_template("home.html", **locals())
@@ -186,7 +186,8 @@ def tenantVehicles():
     page_title = "My Vehicles"
     # get all the vehicles that belongs to the login tenant
     # get tenant vehicles
-    vehicles = TenantVehicles.query.all()
+    tenant_id = session['id']
+    vehicles =  TenantVehicles.query.filter_by(tenant_id=tenant_id)
 
     return render_template("setup/tenant_vehicles.html", **locals())
 
@@ -218,7 +219,7 @@ def setupexclusiveList():
 @app.route('/emergency_access')
 def emergencyAccess():
     # This method are used when the system seems to be down
-    tenant_id = 1
+    tenant_id = session['id']
     tenant_vehicles = TenantVehicles.query.filter_by(tenant_id=tenant_id)
 
     return render_template("emergency_access.html", **locals())
