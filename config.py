@@ -6,7 +6,8 @@ class Config(object):
     DEBUG = False
     TESTING = False
     CSRF_ENABLED = True
-    SECRET_KEY = os.urandom(24)
+    SECRET_KEY = "015026567c29fdffe31d91edbe7ba1b17728db79194fca1f21"
+    # SECRET_KEY = os.urandom(24)
     SESSION_TYPE = 'filesystem'
     MAIL_PORT = 2525
     MAIL_USE_TLS = False
