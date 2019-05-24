@@ -178,6 +178,7 @@ def logout():
 
 @app.route('/setup/vehicles')
 def tenantVehicles():
+    page_title = "My Vehicles"
     # get all the vehicles that belongs to the login tenant
     # get tenant vehicles
     vehicles = TenantVehicles.query.all()

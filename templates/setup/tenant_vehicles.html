@@ -5,40 +5,27 @@
             <div class="card card-default">
                 <div class="card-header">
                     <h3>
-                        My Vehicles
                         <a href="#addVehicle" data-toggle="modal" class="btn btn-warning float-right">Add New Vehicle</a>
                     </h3>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>SN</th>
-                                    <th>Make</th>
-                                    <th>Model</th>
-                                    <th>Registration Number</th>
-                                    <th>Front View</th>
-                                    <th>...</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for vehicle in vehicles %}
-                                <tr>
-                                    <td>{{loop.index}}</td>
-                                    <td>{{ vehicle.vehicle_make }}</td>
-                                    <td>{{ vehicle.vehicle_model }}</td>
-                                    <td>{{ vehicle.plate_number }}</td>
-                                    <td>
-                                        <img src="{{ vehicle.vehicle_image }}" alt="" style="max-height:100px">
-                                    </td>
-                                    <td>
-                                        <a href="/setup/delete_vehicle?id={{vehicle.id}}" onclick="return false;" class="btn btn-danger btn-oval confirm_delete">delete</a>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
+                        {% for vehicle in vehicles %}
+                            <div class="card">
+                                <div class="card-header">
+                                    <img src="{{ vehicle.vehicle_image }}" alt="" style="max-height:120px">
+                                </div>
+                                <div class="card-body">
+                                    Make: {{ vehicle.vehicle_make }}<br>
+                                    Model: {{ vehicle.vehicle_model }}<br>
+                                    Reg. Number: {{ vehicle.plate_number }}<br>
+                                </div> 
+                                <div class="card-footer">
+                                    <a href="/setup/delete_vehicle?id={{vehicle.id}}" onclick="return false;" class="btn btn-danger btn-oval confirm_delete">delete</a>
+                                </div>
+                              </div>
+                        {% endfor %}
+
+                   
                     </div>
                 </div>
             </div>
