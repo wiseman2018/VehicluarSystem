@@ -8,6 +8,11 @@ class Config(object):
     CSRF_ENABLED = True
     SECRET_KEY = os.urandom(24)
     SESSION_TYPE = 'filesystem'
+    MAIL_PORT = 2525
+    MAIL_USE_TLS = False
+    MAIL_SERVER = "smtp.mailtrap.io"
+    MAIL_USERNAME = "1914dfba898b6f"
+    MAIL_PASSWORD = "22cf98bcf4e60e"
 
 
 class ProductionConfig(Config):

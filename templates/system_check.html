@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<!-- START card-->
+<div class="card card-default">
+    <div class="card-header"> This will check every component to ensure that they are working optimally</div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <td>Camera</td>
+                            <td> 
+                                <a class="btn btn-success" href="#">Ping</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>PIR Sensor</td>
+                            <td>  
+                                <a class="btn btn-success" href="#">Ping</a> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Stepper</td>
+                            <td>
+                                <a class="btn btn-success" href="#">Ping</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+    </div>
+</div>
+<!-- END card-->
+
+{% endblock %}

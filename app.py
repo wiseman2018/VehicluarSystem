@@ -9,11 +9,16 @@ from classes.vas import Vas
 from flask_login import LoginManager, login_user, UserMixin
 from cloudinary.uploader import upload
 from cloudinary.utils import cloudinary_url
+from datetime import datetime
+from flask_mail import Mail, Message
 
 app = Flask(__name__)
 # app = Flask(__name__, static_url_path=os.getcwd() + 'static/vendor1')
+# Init mail
+mail = Mail(app)
 app.config.from_object(os.environ['APP_SETTINGS'])
 print(os.environ['APP_SETTINGS'])
+mail = Mail(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 
@@ -74,6 +79,15 @@ class ExclusiveList(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     reg_prefix =  db.Column(db.String(128))
     description =  db.Column(db.String(255))
+
+class EmergencyAccess(db.Model):
+    __tablename__ = "emergency_access"
+
+    id = db.Column(db.Integer, primary_key=True)
+    tenant_vehicle_id =  db.Column(db.Integer, db.ForeignKey('tenant_vehicles.id'))
+    access_date =  db.Column(db.Date())
+    access_time =  db.Column(db.Time())
+    tenant_id = db.Column(db.Integer, db.ForeignKey('tenants.id'))
 
 
 def connect():
@@ -194,6 +208,37 @@ def setupexclusiveList():
 
     return redirect(url_for('exclusiveList'))
 
+@app.route('/emergency_access')
+def emergencyAccess():
+    # This method are used when the system seems to be down
+    tenant_id = 1
+    tenant_vehicles = TenantVehicles.query.filter_by(tenant_id=tenant_id)
+
+    return render_template("emergency_access.html", **locals())
+
+@app.route('/emergency_access', methods=['POST'])
+def emergencyAccess_post():
+    tenant_vehicle_id = request.form.get('tenant_vehicle_id')
+    access_date = datetime.now().strftime('%Y-%m-%d')
+    access_time = datetime.now().strftime('%H:%M:%S')
+    tenant_id = session['id']
+
+    new_access = EmergencyAccess(tenant_vehicle_id=tenant_vehicle_id,access_date=access_date,access_time=access_time,tenant_id=tenant_id)
+
+    # Add new record to db
+    db.session.add(new_access)
+    db.session.commit()
+
+    # Notify system admins of emergency access
+    msg = Message('Emergency Alert', sender='alert@vas.se',
+                              recipients=['akinola.paul2009@gmail.com'])
+    msg.body = "A tenant just requested an emergency access. You may need to check if there is no system failure at moment."
+    mail.send(msg)
+
+    flash("Your request for access has been received. You will be granted access in 60 seconds.")
+
+    return redirect(url_for('home'))
+
 @app.route('/setup/vehicle', methods=['POST'])
 def setupTenantVehicle():
     upload_result = None
@@ -265,6 +310,11 @@ def setupTenantGuest():
     vas.addTenantGuest()
 
     return redirect(url_for('tenantGuests'))
+
+@app.route('/system_check')
+def systemCheck():
+    page_title = "System Check"
+    return render_template("system_check.html", **locals())
 
 
 if __name__ == '__main__':

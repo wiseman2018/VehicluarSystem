@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+{% block body %}
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card card-default">
+                <div class="card-header">
+                    <h3>
+                        Request Access
+                    </h3>
+                </div>
+                <form action="/emergency_access" method="post">
+                    <div class="card-body">
+                        <div class="alert alert-warning">
+                            This feature should only be used in an emergency situation or when there is a system failure.
+                        </div>
+                        <div class="form-group row">
+                            <label for="guest_name" class="col-xl-3 col-form-label">
+                                Vehicle
+                            </label>
+                            <div class="col-xl-9">
+                                <select required name="tenant_vehicle_id" id="tenant_vehicle_id" class="form-control">
+                                    <option value="">Select Vehicle</option>
+                                     {% for vehicle in tenant_vehicles %}
+                                     <option value="{{vehicle.id}}">{{vehicle.plate_number}} - {{vehicle.vehicle_make}} </option>
+                                     {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-warning" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary pull-right" >Gain Access</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
