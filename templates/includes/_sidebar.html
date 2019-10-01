@@ -11,15 +11,14 @@
                             <!-- User picture-->
                             <div class="user-block-picture">
                                 <div class="user-block-status">
-                                    <img class="img-thumbnail rounded-circle"
-                                        src="{{url_for('static', filename='img/user/02.jpg')}}" alt="Avatar" width="60"
-                                        height="60">
+                                    <img class="img-thumbnail rounded-circle" src="{{url_for('static', filename='img/user/02.jpg')}}" alt="Avatar" width="60" height="60">
                                     <div class="circle bg-success circle-lg"></div>
                                 </div>
                             </div>
                             <!-- Name and Job-->
                             <div class="user-block-info">
-                                <span class="user-block-name">Hello, {{session['first_name']}} {{session['last_name']}}</span>
+                                <span class="user-block-name">Hello, {{session['first_name']}}
+									{{session['last_name']}}</span>
                                 <span class="user-block-role">Member</span>
                             </div>
                         </div>
@@ -43,7 +42,7 @@
                         <span>About</span>
                     </a>
                 </li>
-               
+
                 <li class=" ">
                     <a href="#setup" title="Reports" data-toggle="collapse">
                         <em class="icon-settings"></em>
@@ -74,7 +73,13 @@
                         <em class="icon-info"></em>
                         <span>System Check</span>
                     </a>
-                </li> 
+                </li>
+                <li class=" ">
+                    <a href="/report/tenants" title="Report">
+                        <em class="icon-note"></em>
+                        <span>Report</span>
+                    </a>
+                </li>
 
                 <li class=" ">
                     <a href="/logout" title="Logout">
@@ -82,7 +87,7 @@
                         <span>Logout</span>
                     </a>
                 </li>
-                
+
             </ul>
             <!-- END sidebar nav-->
         </nav>

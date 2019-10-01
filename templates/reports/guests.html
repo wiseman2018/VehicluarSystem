@@ -1,0 +1,122 @@
+{% extends 'layout.html' %} {% block body %}
+
+<div class="row">
+    <div class="col-xl-12">
+        <!-- START card-->
+        <div class="card card-default" id="cardDemo14">
+            <div class="card-body">
+                <div role="tabpanel">
+                    <!-- Nav tabs-->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" href="/report/tenants" aria-controls="report" role="tab">Tenants</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" href="/report/visitors" aria-controls="profile" role="tab">Visitors</a>
+                        </li>
+                    </ul>
+                    <!-- Tab panes-->
+                    <div class="tab-content">
+                        <form id="frm_filter">
+
+                            <div class="form-row align-items-center">
+                                <div class="col-auto">
+                                    <label class="sr-only" for="start_date">Date from</label>
+                                    <div class="input-group">
+                                        <input class="form-control datepicker" type="text" id="start_date" placeholder="Start Date" aria-label="start_date" aria-describedby="start_date">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="start_date">
+												<i class="fas fa-calendar"></i>
+											</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-auto">
+                                    <label class="sr-only" for="end_date">Date To</label>
+                                    <div class="input-group">
+                                        <input class="form-control datepicker" type="text" id="end_date" placeholder="End Date" aria-label="start_date" aria-describedby="end_date">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="start_date">
+												<i class="fas fa-calendar"></i>
+											</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <label class="sr-only" for="end_date">Tenant</label>
+                                    <div class="input-group">
+                                        <select class="form-control" name="tenant_id" id="tenant_id">
+											<option value="" selected>All Tenants</option>
+											{% for row in tenants %}
+											<option value="{{row.id}}">{{row.first_name}} {{row.last_name}}</option>
+											{% endfor %}
+										</select>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-auto">
+                                    <button id="btn_filter" class="btn btn-warning mb-2" type="button"> <i
+											class="fas fa-search"></i>
+										Filter</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END card-->
+    </div>
+
+    <div class="col-xl-12">
+        <div class="card card-default">
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>SN</th>
+                                <th>Guest</th>
+                                <th>Plate Number</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in guests %}
+                            <tr>
+                                <td>{{loop.index}}</td>
+                                <td>{{row.guest_name}}</td>
+                                <td>{{row.plate_number}}</td>
+                                <td>{{row.arrival_date}}
+
+                                </td>
+                                <td>{{row.arrival_time}}
+                                </td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="col-xl-6">
+        <div class="card card-default">
+            <div class="card-header">Analytics</div>
+            <div class="card-body">
+                <div class="table-responsive">
+
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+</div>
+<!-- END row-->
+
+{% endblock %}

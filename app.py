@@ -94,6 +94,14 @@ class EmergencyAccess(db.Model):
     access_time =  db.Column(db.Time())
     tenant_id = db.Column(db.Integer, db.ForeignKey('tenants.id'))
 
+class AccessLogs(db.Model):
+    __tablename__ = "access_logs"
+
+    id = db.Column(db.Integer, primary_key=True)
+    plate_number =  db.Column(db.String(128))
+    access_date =  db.Column(db.String(128))
+    access_time =  db.Column(db.String(128))
+    acess_granted =  db.Column(db.String(128))
 
 def connect():
     """ Connect to the PostgreSQL database server """
@@ -323,6 +331,36 @@ def setupTenantGuest():
 def systemCheck():
     page_title = "System Check"
     return render_template("system_check.html", **locals())
+
+@app.route('/report')
+def report():
+    page_title = "General Report"
+    return render_template("reports/report.html", **locals())
+
+@app.route('/report/tenants')
+def reportTenant():
+    page_title = "Tenant Reports"
+    tenants = Tenants.query.all()
+    return render_template("reports/tenants.html", **locals())
+
+@app.route('/report/visitors')
+def reportVisitors():
+    page_title = "Visitor Reports"
+    guests = TenantGuests.query.all()
+    tenants = Tenants.query.all()
+    return render_template("reports/guests.html", **locals())
+
+@app.route('/report/access')
+def reportAccess():
+    page_title = "Access Logs"
+    access = AccessLogs.query.all()
+    tenants = Tenants.query.all()
+    return render_template("reports/access.html", **locals())
+
+@app.route('/analytics')
+def abalytics():
+    page_title = "Analytics"
+    return render_template("reports/analytics.html", **locals())
 
 
 if __name__ == '__main__':

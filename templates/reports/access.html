@@ -1,0 +1,44 @@
+{% extends 'layout.html' %} {% block body %}
+
+<div class="row">
+
+
+    <div class="col-xl-12">
+        <div class="card card-default">
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>SN</th>
+                                <th>Plate Number</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Granted</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in access %} {% if row.acess_granted == 'N' %}
+                            <tr style="background-color: red">
+                                {% else %}
+                                <tr></tr>
+                                {% endif %}
+                                <td>{{loop.index}}</td>
+                                <td>{{row.plate_number}}</td>
+                                <td>{{row.access_date}}</td>
+                                <td>{{row.access_time}}</td>
+                                <td>{{row.acess_granted}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- END row-->
+
+{% endblock %}
