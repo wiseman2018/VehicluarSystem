@@ -40,17 +40,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for row in tenants %}
+							{% set totalVehicles = 1 %}
+							{% for row in tenants %}
+							{% set totalVehicles = totalVehicles + loop.index %}
                             <tr>
                                 <td>{{loop.index}}</td>
                                 <td>{{row.first_name}} {{row.last_name}}</td>
                                 <td> <i class="fas fa-envelope"></i> {{row.email}} <br> <i class="fas fa-phone"></i>{{ row.phone }}</td>
                                 <td>{{row.apt_number}}</td>
                                 <td>{{row.move_in_date}}</td>
-                                <td>{{loop.index }}</td>
+								<td>{{loop.index }}</td>
                             </tr>
                             {% endfor %}
-                        </tbody>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td>Total</td>
+								<td colspan="4">&nbsp;</td>
+								<td>{{totalVehicles}}</td>
+							</tr>
+						</tfoot>
                     </table>
                 </div>
             </div>
